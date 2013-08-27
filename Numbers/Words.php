@@ -25,7 +25,8 @@
  */
 
 // {{{ Numbers_Words
-require_once 'Numbers/Words/Exception.php';
+if (!class_exists("Numbers_Words_Exception"))
+    require_once 'Words/Exception.php';
 
 /**
  * The Numbers_Words class provides method to convert arabic numerals to words.
@@ -199,10 +200,10 @@ class Numbers_Words
         } elseif ($len > 2) {
             // get the 3rd digit after the comma
             $round_digit = substr($currency[1], 2, 1);
-            
+
             // cut everything after the 2nd digit
             $currency[1] = substr($currency[1], 0, 2);
-            
+
             if ($round_digit >= 5) {
                 // round up without losing precision
                 include_once "Math/BigInteger.php";
